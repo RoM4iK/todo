@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  unsername: postgres
+
+development:
+  <<: *default
+  database: todo_development
+test:
+  <<: *default
+  database: todo_test
