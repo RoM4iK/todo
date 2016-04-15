@@ -1,8 +1,10 @@
-appController = ($scope, $rootScope, $http, $auth, $state, Notification) ->
+appController = ($scope, $rootScope, $http, $auth, $state, ipCookie, Notification) ->
   $scope.user = null;
+  $scope.loaded = !ipCookie('auth_headers');
   $rootScope.$on('auth:validation-success', (ev, user) ->
-    console.log('User:', user);
+    $scope.loaded = true
     $scope.user = user;
+    $state.go('dashboard.projects') if !$state.includes 'dashboard'
   )
   $rootScope.$on('auth:registration-email-success', (ev, user) ->
     Notification 'Successfully registered'
@@ -20,4 +22,4 @@ appController = ($scope, $rootScope, $http, $auth, $state, Notification) ->
   )
   $scope.sign_out = () ->
     $auth.signOut()
-angular.module('App').controller('appController', ['$scope', '$rootScope', '$http', '$auth', '$state', 'Notification', appController])
+angular.module('App').controller('appController', ['$scope', '$rootScope', '$http', '$auth', '$state', 'ipCookie', 'Notification', appController])

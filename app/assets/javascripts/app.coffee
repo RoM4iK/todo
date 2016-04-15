@@ -1,4 +1,4 @@
-angular.module('App', ["ui.router", "templates", "ng-token-auth", "ui-notification"]).config(($authProvider) ->
+angular.module('App', ["ui.router", "templates", "ng-token-auth", "ui-notification", "ipCookie"]).config(($authProvider) ->
   $authProvider.configure(
       apiUrl: 'http://localhost:3000'
   )
