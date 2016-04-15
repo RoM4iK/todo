@@ -1,1 +1,7 @@
-sign in page
+<div class="sign_in" ng-controller="signInController">
+  <form ng-submit="submit()">
+    <input type="email" ng-model="user.email">
+    <input type="password" ng-model="user.password">
+    <button type="submit">Sign in</button>
+  </form>
+</div>

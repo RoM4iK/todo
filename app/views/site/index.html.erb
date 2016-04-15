@@ -1,7 +1,4 @@
-<div class="main" ng-app="App">
+<div class="main" ng-app="App" ng-controller="appController">
+  <div ng-include='"navigation.html"'></div>
   <div ui-view></div>
-  <!-- We'll also add some navigation: -->
-  <a ui-sref="index">Index state</a>
-  <a ui-sref="sign_in">Sign in</a>
-  <a ui-sref="sign_in">Sign up</a>
 </div>

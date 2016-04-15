@@ -1,2 +1,5 @@
 asset 'angular'
+asset 'angular-cookie'
 asset 'angular-ui-router'
+asset 'ng-token-auth'
+asset 'angular-ui-notification'
