@@ -1,6 +1,30 @@
 <div class="main" ng-app="App" ng-controller="appController">
-  <div class="container" ng-if="loaded">
+  <main ng-if="loaded">
     <div ng-include='"navigation.html"'></div>
     <div ui-view></div>
-  </div>
+  </main>
+  <footer class="page-footer light-blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Todo list</h5>
+          <p class="grey-text text-lighten-4">Thank you for viewing this application.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/rom4ik/todo" target="_blank">Github</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Roman Gritsay
+      </div>
+    </div>
+  </footer>
 </div>

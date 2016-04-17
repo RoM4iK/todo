@@ -1,1 +1,12 @@
-index page
+<div class="index__intro grey-text text-lighten-2">
+  <div class="container">
+    <div class="row center">
+      <div class="col s12">
+        <h1>Todo application</h1>
+        <h3>Test task for RubyGarage courses.</h3>
+        <a ng-if="user" ui-sref="dashboard.projects" class="index__intro__button btn-large primary-button">Go to dashboard</a>
+        <a ng-if="!user" ui-sref="sign_up" class="index__intro__button btn-large primary-button">Get started</a>
+      </div>
+    </div>
+  </div>
+</div>

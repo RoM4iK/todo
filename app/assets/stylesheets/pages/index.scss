@@ -1,0 +1,13 @@
+.index {
+  &__intro {
+    height: 600px;
+    margin-bottom: -20px; //no space between footer and intro
+    background-image: image-url('macbook-cropped.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+    &__button {
+      margin-top: 50px;
+    }
+  }
+}

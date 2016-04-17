@@ -1,7 +1,19 @@
-<div class="navigation">
-  <a ui-sref="index">Index</a>
-  <a ui-sref="sign_in" ng-if="!user">Sign in</a>
-  <a ui-sref="sign_up" ng-if="!user">Sign up</a>
-  <a href="#" ng-if="user" ng-click="signOut()">Sign out</a>
-  <a ui-sref="dashboard.projects">Projects</a>
-</div>
+<nav>
+  <div class="nav-wrapper light-blue">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <a ui-sref="index" class="brand-logo">Todo</a>
+          <ul ng-if="!user" id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a ui-sref="sign_in">Sign in</a></li>
+            <li><a ui-sref="sign_up">Sign up</a></li>
+          </ul>
+          <ul ng-if="user" id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a ui-sref="dashboard.projects">Dashboard</a></li>
+            <li><a href="#" ng-click="signOut()">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -7,12 +7,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-# gem 'devise'
 gem 'bower-rails'
 gem 'coffee-rails'
 gem 'angular-rails-templates'
 gem 'devise_token_auth'
 gem 'omniauth-facebook'
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug'

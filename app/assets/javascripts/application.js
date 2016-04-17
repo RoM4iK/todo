@@ -10,11 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery/dist/jquery
 //= require angular/angular
 //= require angular-ui-router/release/angular-ui-router
 //= require angular-cookie/angular-cookie
 //= require ng-token-auth/dist/ng-token-auth
 //= require angular-ui-notification/dist/angular-ui-notification
+//= require materialize/dist/js/materialize
 //= require angular-rails-templates
 //= require_tree ../templates
 //= require_tree .

@@ -4,7 +4,7 @@ appController = ($scope, $rootScope, $http, $auth, $state, ipCookie, Notificatio
   $rootScope.$on('auth:validation-success', (ev, user) ->
     $scope.loaded = true
     $scope.user = user;
-    $state.go('dashboard.projects') if !$state.includes 'dashboard'
+    $state.go('dashboard.projects') if $state.includes 'sign_in' || $state.includes('sign_up')
   )
   $rootScope.$on('auth:registration-email-success', (ev, user) ->
     Notification 'Successfully registered'
