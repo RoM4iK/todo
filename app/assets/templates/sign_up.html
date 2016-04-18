@@ -1,12 +1,12 @@
-<div class="sign_up auth-page" ng-controller="signInController">
+<div class="sign_up auth-page" ng-controller="signUpController">
   <div class="container">
     <div class="row center">
         <h1>Sign up</h1>
     </div>
     <div class="row">
       <div class="col s12 m6 offset-m3">
-        <div class="sign_in__content">
-          <form ng-submit="submit()" class="sign_in__form">
+        <div class="sign_up__content">
+          <form ng-submit="submit()" class="sign_up__form" novalidate>
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" type="email" ng-model="user.email" class="validate">
@@ -17,12 +17,6 @@
               <div class="input-field col s12">
                 <input id="password" type="password" pattern=".{8,}"  ng-model="user.password" class="validate">
                 <label for="password" data-error="8 chars minimum">Password</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="password_confirmation" type="password" pattern=".{8,}" ng-model="user.password_confirmation" class="validate">
-                <label for="password_confirmation" data-error="8 chars minimum">Password confirmation</label>
               </div>
             </div>
             <div class="row">

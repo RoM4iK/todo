@@ -6,6 +6,11 @@
 main {
   flex: 1 0 auto;
 }
+
+input:-webkit-autofill {
+  background: #fff !important;
+}
+
 .primary-button {
   @extend .btn;
   @extend .waves-effect;

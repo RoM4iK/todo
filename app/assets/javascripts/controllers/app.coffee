@@ -9,6 +9,7 @@ appController = ($scope, $rootScope, $http, $auth, $state, ipCookie, Notificatio
   $rootScope.$on('auth:registration-email-success', (ev, user) ->
     Notification 'Successfully registered'
     $scope.user = user;
+    $state.go('dashboard.projects')
   )
   $rootScope.$on('auth:login-success', (ev, user) ->
     Notification 'Successfully signed in'

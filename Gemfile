@@ -13,10 +13,14 @@ gem 'angular-rails-templates'
 gem 'devise_token_auth'
 gem 'omniauth-facebook'
 gem 'cancancan'
+gem 'angular_rails_csrf'
+
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :test do
@@ -24,6 +28,8 @@ group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 group :development do
