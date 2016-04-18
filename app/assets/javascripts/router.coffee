@@ -17,12 +17,20 @@ angular.module('App').config ($stateProvider, $urlRouterProvider) ->
     resolve:
       auth: ($auth) ->
         return !$auth.validateUser()
-  $stateProvider.state 'dashboard',
-    url: "/dashboard",
-    abstract: true
+  $stateProvider.state 'projects',
+    url: "/projects",
+    abstract: true,
     resolve:
       auth: ($auth) ->
         return $auth.validateUser()
-  $stateProvider.state 'dashboard.projects',
+    template: '<ui-view/>'
+  .state 'projects.index',
     url: "/",
-    templateUrl: "dashboard/projects.html"
+    controller: () ->
+      console.log('index')
+    templateUrl: "projects/index.html"
+  .state 'projects.create',
+    url: "/create",
+    controller: () ->
+      console.log('create')
+    templateUrl: "projects/create.html"
