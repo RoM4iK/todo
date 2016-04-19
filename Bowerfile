@@ -1,5 +1,6 @@
 asset 'jquery'
 asset 'angular'
+asset 'angular-resource'
 asset 'angular-cookie'
 asset 'angular-ui-router'
 asset 'ng-token-auth'

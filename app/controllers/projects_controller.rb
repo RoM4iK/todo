@@ -14,4 +14,10 @@ class ProjectsController < ApplicationController
 
   def delete
   end
+
+  private
+
+  def project_params
+    params.require('project').permit('title')
+  end
 end

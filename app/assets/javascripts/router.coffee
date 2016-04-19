@@ -26,11 +26,9 @@ angular.module('App').config ($stateProvider, $urlRouterProvider) ->
     template: '<ui-view/>'
   .state 'projects.index',
     url: "/",
-    controller: () ->
-      console.log('index')
+    controller: "projectsController",
     templateUrl: "projects/index.html"
   .state 'projects.create',
     url: "/create",
-    controller: () ->
-      console.log('create')
+    controller: "projectsController",
     templateUrl: "projects/create.html"

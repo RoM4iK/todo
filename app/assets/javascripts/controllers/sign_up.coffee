@@ -1,4 +1,4 @@
-signUpController = ($scope, $http, $auth, Notification) ->
+signUpController = ($scope, $auth, Notification) ->
   $scope.submit = () ->
     $auth.submitRegistration($scope.user)
         .catch((response) ->
@@ -6,4 +6,4 @@ signUpController = ($scope, $http, $auth, Notification) ->
           response.data.errors.full_messages.forEach (error) ->
               Notification.error error
           )
-angular.module('App').controller('signUpController', ['$scope', '$http', '$auth', 'Notification', signUpController])
+angular.module('App').controller('signUpController', ['$scope', '$auth', 'Notification', signUpController])

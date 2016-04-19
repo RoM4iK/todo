@@ -6,16 +6,20 @@
     <div class="row">
       <div class="col s12">
         <div class="col s12 m6 offset-m3">
-            <form ng-submit="submit()" class="create__form" novalidate>
+            <form name="form" ng-submit="form.$valid && create(form)" class="create__form" novalidate ng-init="project = {}">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="title" type="text" ng-model="project.title" class="validate">
-                  <label for="title" data-error="You must enter project title" required>Title</label>
+                  <input id="title" type="text" name="title" ng-model="project.title" class="validate" ng-required="true">
+                  <label for="title">Title</label>
+                  <div ng-show="project.title.$touched">
+                    <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
+                    <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col s12">
-                  <button type="submit" class="primary-button">
+                  <button type="submit" ng-class="['primary-button', {disabled: form.$invalid}]">
                     Create
                     <i class="material-icons right">send</i>
                   </button>

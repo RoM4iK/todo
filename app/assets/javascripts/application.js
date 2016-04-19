@@ -12,6 +12,7 @@
 //
 //= require jquery/dist/jquery
 //= require angular/angular
+//= require angular-resource/angular-resource
 //= require angular-ui-router/release/angular-ui-router
 //= require angular-cookie/angular-cookie
 //= require ng-token-auth/dist/ng-token-auth
