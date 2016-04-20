@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160415000725) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "projects", ["uuid"], name: "index_projects_on_uuid", using: :btree
+  add_index "projects", ["uuid"], name: "index_projects_on_uuid", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
