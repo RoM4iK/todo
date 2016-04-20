@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col s12">
         <div class="col s12 m6 offset-m3">
-            <form name="form" ng-submit="form.$valid && create(form)" class="create__form" novalidate ng-init="project = {}">
+            <form name="form" ng-submit="form.$valid && create(form)" class="create__form" novalidate ng-init="init()">
               <div class="row">
                 <div class="input-field col s12">
                   <input id="title" type="text" name="title" ng-model="project.title" class="validate" ng-required="true">

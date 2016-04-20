@@ -19,5 +19,6 @@
 //= require angular-ui-notification/dist/angular-ui-notification
 //= require materialize/dist/js/materialize
 //= require angular-rails-templates
+//= require angular-uuid-service/angular-uuid-service
 //= require_tree ../templates
 //= require_tree .
