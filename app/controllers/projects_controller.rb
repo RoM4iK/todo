@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     if @project.save
       render :show, status: 201, location: project_path(@project)
     else
-      render json: @project.errors
+      render json: {errors: @project.errors.full_messages}, status: 403
     end
   end
 

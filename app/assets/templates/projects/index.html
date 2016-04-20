@@ -1,10 +1,15 @@
-<div class="projects">
+<div class="projects" ng-init="index()">
   <div class="container">
     <div class="row center">
         <h1>Your projects</h1>
     </div>
     <div class="row">
       <div class="col s12">
+        <div class="row" ng-repeat="project in projects">
+          <div class="col s12">
+            <a ui-sref="projects.show({id: project.id})">{{ project.title }}</a>
+          </div>
+        </div>
         <div class="row center">
             <a ui-sref="projects.create" class="btn-large primary-button">Create project</a>
         </div>

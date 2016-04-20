@@ -32,3 +32,7 @@ angular.module('App').config ($stateProvider, $urlRouterProvider) ->
     url: "/create",
     controller: "projectsController",
     templateUrl: "projects/create.html"
+  .state 'projects.show',
+    url: "/:id",
+    controller: "projectsController",
+    templateUrl: "projects/show.html"
