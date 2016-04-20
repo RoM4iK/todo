@@ -24,6 +24,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require('project').permit('title', 'id')
+    params.require('project').permit('title', 'uuid')
   end
 end

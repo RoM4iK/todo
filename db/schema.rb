@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 20160415000725) do
   enable_extension "plpgsql"
 
   create_table "projects", id: false, force: :cascade do |t|
-    t.string   "id"
+    t.string   "uuid",       null: false
     t.string   "title"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "projects", ["id"], name: "index_projects_on_id", using: :btree
+  add_index "projects", ["uuid"], name: "index_projects_on_uuid", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false

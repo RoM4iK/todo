@@ -8,6 +8,7 @@ require 'shoulda'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+require 'support/controllers_helper'
 
 Capybara.javascript_driver = :poltergeist
 
@@ -25,6 +26,7 @@ RSpec.configure do |config|
     end
   end
 
+  config.include ControllersHelper, type: :controller
   config.filter_rails_from_backtrace!
 end
 

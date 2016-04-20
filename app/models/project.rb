@@ -1,7 +1,8 @@
 class Project < ActiveRecord::Base
-  self.primary_key = :id
+  self.primary_key = :uuid
 
   belongs_to :user
   validates :title, presence: true
-  validates :id, presence: true, uniqueness: true
+  validates :uuid, presence: true, uniqueness: true
+  
 end

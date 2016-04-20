@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :project do
     title Faker::Commerce.department
-    id Faker::Lorem.characters(16)
-    
+    uuid Faker::Lorem.characters(16)
+
     after :build do |project, evaluator|
       if project.user.blank?
         project.user = build(:user)
