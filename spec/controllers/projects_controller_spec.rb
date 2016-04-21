@@ -19,6 +19,33 @@ RSpec.describe ProjectsController, type: :controller do
         expect(response).to render_template(:show)
       end
     end
+    context 'when user cannot read project' do
+      before do
+        setup_ability
+        @project = FactoryGirl.create(:project)
+        @ability.cannot :read, Project
+        get :show, id: @project, format: :json
+      end
+      it 'should have 403 http status' do
+        expect(response).to have_http_status(403)
+      end
+      it 'should return error message' do
+        expect(JSON.parse(response.body)).to eq("errors" => ["You are not authorized to access this page."])
+      end
+    end
+    context 'when project not found' do
+      before do
+        setup_ability
+        @ability.can :read, Project
+        get :show, id: "undefined", format: :json
+      end
+      it 'should have 404 http status' do
+        expect(response).to have_http_status(404)
+      end
+      it 'should return error message' do
+        expect(JSON.parse(response.body)).to eq("errors" => ["Couldn't find Project with 'uuid'=undefined"])
+      end
+    end
   end
   describe 'POST #create' do
     context "with valid project" do

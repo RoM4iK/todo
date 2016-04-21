@@ -3,6 +3,9 @@ angular.module('App').config ($stateProvider, $urlRouterProvider) ->
   $stateProvider.state 'index',
     url: "/",
     templateUrl: "index.html"
+  $stateProvider.state '404',
+    url: "/404",
+    templateUrl: "404.html"
   $stateProvider.state 'sign_in',
     url: "/sign_in",
     templateUrl: "sign_in.html",

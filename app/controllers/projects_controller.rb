@@ -21,6 +21,15 @@ class ProjectsController < ApplicationController
   def delete
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    respond_to do |format|
+      format.json do
+        render json: { errors: [exception.message] }, status: 404
+      end
+      format.html { redirect_to root_url, :alert => exception.message }
+    end
+  end
+
   private
 
   def project_params
