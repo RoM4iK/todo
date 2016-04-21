@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

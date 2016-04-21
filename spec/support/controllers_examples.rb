@@ -1,5 +1,5 @@
 module ControllersExamples
-  RSpec.shared_examples "a authorized action" do
+  RSpec.shared_examples "not authorized action" do
     it 'should have 403 http status' do
       expect(@response).to have_http_status(403)
     end

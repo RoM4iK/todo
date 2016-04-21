@@ -22,7 +22,7 @@ RSpec.describe ProjectsController, type: :controller do
         @ability.cannot :read, Project
         get :index, format: :json
       end
-      it_behaves_like "a authorized action"
+      it_behaves_like "not authorized action"
     end
   end
   describe 'GET #show' do
@@ -50,7 +50,7 @@ RSpec.describe ProjectsController, type: :controller do
         @ability.cannot :read, Project
         get :show, id: @project, format: :json
       end
-      it_behaves_like "a authorized action"
+      it_behaves_like "not authorized action"
     end
     context 'when project not found' do
       before do
@@ -66,6 +66,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
     end
   end
+  #TODO: "409 conflict" reponse
   describe 'POST #create' do
     context "with valid project" do
       before do
@@ -104,4 +105,6 @@ RSpec.describe ProjectsController, type: :controller do
       end
     end
   end
+  #TODO: 'PATCH #update'
+  #TODO: 'DELETE #destroy'
 end
