@@ -1,11 +1,5 @@
-module ControllersHelper
-  def setup_ability
-    @ability = Object.new
-    @ability.extend(CanCan::Ability)
-    allow(@controller).to receive(:current_ability) { @ability }
-  end
-
-  def it_have_cancan_authorization
+module ControllersExamples
+  RSpec.shared_examples "a authorized action" do
     it 'should have 403 http status' do
       expect(@response).to have_http_status(403)
     end

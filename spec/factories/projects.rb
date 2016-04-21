@@ -1,7 +1,10 @@
 FactoryGirl.define do
   factory :project do
     title Faker::Commerce.department
-    uuid Faker::Lorem.characters(16)
+    sequence :uuid do |n|
+      "#{Faker::Lorem.characters(15)}#{n}"
+    end
+
 
     after :build do |project, evaluator|
       if project.user.blank?

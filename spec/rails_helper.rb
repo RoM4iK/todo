@@ -8,7 +8,7 @@ require 'shoulda'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
-require 'support/controllers_helper'
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 Capybara.javascript_driver = :poltergeist
 
@@ -27,6 +27,8 @@ RSpec.configure do |config|
   end
 
   config.include ControllersHelper, type: :controller
+  config.include ControllersExamples, type: :controller
+
   config.filter_rails_from_backtrace!
 end
 

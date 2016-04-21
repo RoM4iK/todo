@@ -1,6 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  describe 'GET #index' do
+    context 'when user can have projects' do
+      before do
+        setup_ability
+        @user = FactoryGirl.create(:user)
+        allow(controller).to receive(:current_user) { @user }
+        @project = FactoryGirl.create_list(:project, 10, {user_id: @user})
+        @ability.can :read, Project
+        get :index, format: :json
+      end
+      it 'should have 200 http status' do
+        expect(response).to have_http_status(200)
+      end
+      it { expect(controller).to render_template(:index) }
+    end
+    context 'when user cannot have projects' do
+      before do
+        setup_ability
+        @ability.cannot :read, Project
+        get :index, format: :json
+      end
+      it_behaves_like "a authorized action"
+    end
+  end
   describe 'GET #show' do
     context 'when user can read project' do
       before do
@@ -26,12 +50,7 @@ RSpec.describe ProjectsController, type: :controller do
         @ability.cannot :read, Project
         get :show, id: @project, format: :json
       end
-      it 'should have 403 http status' do
-        expect(response).to have_http_status(403)
-      end
-      it 'should return error message' do
-        expect(JSON.parse(response.body)).to eq("errors" => ["You are not authorized to access this page."])
-      end
+      it_behaves_like "a authorized action"
     end
     context 'when project not found' do
       before do
