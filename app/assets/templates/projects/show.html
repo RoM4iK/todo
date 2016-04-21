@@ -1,19 +1,18 @@
-<div class="projects" ng-init="show()">
-  <div class="container">
+<div class="projects show" ng-init="show()">
+  <div class="container relative">
     <div class="row center">
-        <h1>{{ project.title }}</h1>
+        <h2>{{ project.title }}</h2>
+        <projects-actions id="project.uuid"/>
+       </div>
     </div>
     <div class="row">
       <div class="col s12">
         <div class="col s12 m6 offset-m3">
-          <div class="project">
+          <div class="projects__project">
             {{ project }}
           </div>
         </div>
       </div>
-    </div>
-    <div class="row center">
-        <a ui-sref="projects.index" class="primary-button">Back to all projects</a>
     </div>
   </div>
 </div>

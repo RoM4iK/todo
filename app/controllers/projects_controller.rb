@@ -16,6 +16,11 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    if @project.update project_params
+      render :show, status: 200, location: project_path(@project)
+    else
+      render json: {errors: @project.errors.full_messages}, status: 403
+    end
   end
 
   def destroy

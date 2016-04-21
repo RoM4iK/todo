@@ -25,3 +25,7 @@ input:-webkit-autofill {
 .ng-invalid.ng-dirty {
   @extend .invalid;
 }
+
+.relative {
+  position: relative;
+}

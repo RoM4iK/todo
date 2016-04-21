@@ -1,0 +1,12 @@
+.projects {
+  &__edit_button, &__back_button {
+    position: absolute;
+    top: 15px;
+  }
+  &__edit_button {
+    right: 15px;
+  }
+  &__back_button {
+    left: 15px;
+  }
+}

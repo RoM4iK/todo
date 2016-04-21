@@ -10,6 +10,12 @@ projectsController = ($scope, Notification, Project, rfc4122, $state, $statePara
       .then(() ->
          $state.go('projects.show', {id: project.uuid})
       )
+  $scope.update = (form) ->
+    project = $scope.project
+    Project.update({id: project.uuid}, project, () ->
+         Notification 'Project updated'
+         $state.go('projects.show', {id: project.uuid})
+      )
   $scope.show = () ->
     $scope.project = Project.get
       id: $stateParams.id

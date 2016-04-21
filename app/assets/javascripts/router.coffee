@@ -39,3 +39,7 @@ angular.module('App').config ($stateProvider, $urlRouterProvider) ->
     url: "/:id",
     controller: "projectsController",
     templateUrl: "projects/show.html"
+  .state 'projects.edit',
+    url: "/:id/edit",
+    controller: "projectsController",
+    templateUrl: "projects/edit.html"
