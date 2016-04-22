@@ -1,9 +1,13 @@
 .projects {
-  &__edit_button, &__back_button {
+  &__edit_button, &__back_button, &__delete_button {
     position: absolute;
     top: 15px;
   }
   &__edit_button {
+    right: 15px;
+  }
+  &__delete_button {
+    top: 60px;
     right: 15px;
   }
   &__back_button {

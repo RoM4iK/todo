@@ -4,7 +4,7 @@ projectsFactory = ($resource) ->
       },
       {
         'update':
-          method:'PUT'
+          method:'PATCH'
       }
 
 angular.module('App').factory('Project', ['$resource', projectsFactory])

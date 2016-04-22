@@ -10,6 +10,11 @@ projectsController = ($scope, Notification, Project, rfc4122, $state, $statePara
       .then(() ->
          $state.go('projects.show', {id: project.uuid})
       )
+  $scope.delete = () ->
+    if confirm("Are you sure to delete this project?")
+      Project.delete({id: $scope.project.uuid}, () ->
+        $state.go('projects.index')
+      )
   $scope.update = (form) ->
     project = $scope.project
     Project.update({id: project.uuid}, project, () ->

@@ -4,6 +4,9 @@
 <a ng-if="editPage" ui-sref="projects.show({id: id})" class="btn-floating light-blue projects__edit_button">
   <i class="large material-icons">mode_edit</i>
 </a>
+<a ng-click="delete()" class="btn-floating light-blue projects__delete_button">
+  <i class="large material-icons">delete</i>
+</a>
 <a ui-sref="projects.index" class="btn-floating light-blue projects__back_button">
   <i class="large material-icons">arrow_back</i>
 </a>
