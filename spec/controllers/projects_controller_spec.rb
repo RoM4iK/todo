@@ -192,5 +192,34 @@ RSpec.describe ProjectsController, type: :controller do
       it_behaves_like "not authorized action"
     end
   end
-  #TODO: 'DELETE #destroy'
+  describe 'DELETE #destroy' do
+    context 'when user can delete project' do
+      before do
+        setup_ability
+        @user = FactoryGirl.create(:user)
+        allow(controller).to receive(:current_user) { @user }
+        @project = FactoryGirl.create(:project, {user_id: @user})
+        expect(Project.count).to eq(1)
+        @ability.can :destroy, Project
+        delete :destroy, id: @project.uuid, format: :json
+      end
+      it 'should delete project' do
+        expect(Project.count).to eq(0)
+      end
+      it 'should have 200 http status' do
+        expect(response).to have_http_status(200)
+      end
+    end
+    context 'when user cannot delete project' do
+      before do
+        setup_ability
+        @user = FactoryGirl.create(:user)
+        allow(controller).to receive(:current_user) { @user }
+        @project = FactoryGirl.create(:project, {user_id: @user})
+        @ability.cannot :destroy, Project
+        delete :destroy, id: @project.uuid, format: :json
+      end
+      it_behaves_like "not authorized action"
+    end
+  end
 end
