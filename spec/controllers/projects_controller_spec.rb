@@ -104,6 +104,22 @@ RSpec.describe ProjectsController, type: :controller do
         expect(JSON.parse(response.body)["errors"]).to eq(@project.errors.full_messages)
       end
     end
+    context "when project already created" do
+      before do
+        @project = FactoryGirl.create(:project)
+        expect(Project.count).to eq(1)
+        post :create, project: @project.attributes, format: :json
+      end
+      it 'should not create new project' do
+        expect(Project.count).to eq(1)
+      end
+      it 'should have 409 http status' do
+        expect(response).to have_http_status(409)
+      end
+      it 'should return errors list' do
+        expect(JSON.parse(response.body)["errors"]).to eq(["Uuid has already been taken"])
+      end
+    end
   end
   #TODO: 'PATCH #update'
   #TODO: 'DELETE #destroy'
