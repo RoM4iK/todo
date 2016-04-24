@@ -8,7 +8,8 @@ projectsController = ($scope, Notification, Project, rfc4122, $state, $statePara
     project = new Project($scope.project)
     project.$save()
       .then(() ->
-         $state.go('projects.show', {id: project.uuid})
+        Notification 'Project created'
+        $state.go('projects.show', {id: project.uuid})
       )
   $scope.delete = () ->
     if confirm("Are you sure to delete this project?")

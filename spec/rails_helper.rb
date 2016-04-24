@@ -28,6 +28,7 @@ RSpec.configure do |config|
 
   config.include ControllersHelper, type: :controller
   config.include ControllersExamples, type: :controller
+  config.include FeaturesHelper, type: :feature
 
   config.filter_rails_from_backtrace!
 end
