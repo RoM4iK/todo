@@ -9,8 +9,7 @@ feature 'Create project', type: :feature, js: true do
     context 'With correct data' do
       before do
         @project = FactoryGirl.build(:project)
-        @create_path = '/#/projects/create'
-        visit @create_path
+        visit '/#/projects/create'
         expect(page).to have_selector('.projects__create__form')
         within '.projects__create__form' do
           fill_in "Title", with: @project.title
@@ -27,8 +26,7 @@ feature 'Create project', type: :feature, js: true do
     context 'With inccorrect data' do
       before do
         @project = FactoryGirl.build(:project)
-        @create_path = '/#/projects/create'
-        visit @create_path
+        visit '/#/projects/create'
         expect(page).to have_selector('.projects__create__form')
         within '.projects__create__form' do
           fill_in "Title", with: ""
