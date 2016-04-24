@@ -23,7 +23,7 @@ feature 'Create project', type: :feature, js: true do
         expect(page).to have_selector('.projects__project')
       end
     end
-    context 'With inccorrect data' do
+    context 'With incorrect data' do
       before do
         @project = FactoryGirl.build(:project)
         visit '/#/projects/create'

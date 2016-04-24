@@ -14,6 +14,7 @@ projectsController = ($scope, Notification, Project, rfc4122, $state, $statePara
   $scope.delete = () ->
     if confirm("Are you sure to delete this project?")
       Project.delete({id: $scope.project.uuid}, () ->
+        Notification 'Project deleted'
         $state.go('projects.index')
       )
   $scope.update = (form) ->
