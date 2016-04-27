@@ -1,197 +1,166 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
-  # describe 'GET #index' do
-  #   context 'when user can have projects' do
-  #     before do
-  #       setup_ability
-  #       @user = FactoryGirl.create(:user)
-  #       allow(controller).to receive(:current_user) { @user }
-  #       @project = FactoryGirl.create_list(:project, 10, {user_id: @user})
-  #       @ability.can :read, Project
-  #       get :index, format: :json
-  #     end
-  #     it 'should have 200 http status' do
-  #       expect(response).to have_http_status(200)
-  #     end
-  #     it { expect(controller).to render_template(:index) }
-  #   end
-  #   context 'when user cannot have projects' do
-  #     before do
-  #       setup_ability
-  #       @ability.cannot :read, Project
-  #       get :index, format: :json
-  #     end
-  #     it_behaves_like "not authorized action"
-  #   end
-  # end
-  # describe 'GET #show' do
-  #   context 'when user can read project' do
-  #     before do
-  #       setup_ability
-  #       @project = FactoryGirl.create(:project)
-  #       @ability.can :read, Project
-  #       get :show, id: @project, format: :json
-  #     end
-  #     it 'should have 200 http status' do
-  #       expect(response).to have_http_status(200)
-  #     end
-  #     it 'should assign project' do
-  #       expect(assigns(:project).uuid).to eq(@project.uuid)
-  #     end
-  #     it 'should return project' do
-  #       expect(response).to render_template(:show)
-  #     end
-  #   end
-  #   context 'when user cannot read project' do
-  #     before do
-  #       setup_ability
-  #       @project = FactoryGirl.create(:project)
-  #       @ability.cannot :read, Project
-  #       get :show, id: @project, format: :json
-  #     end
-  #     it_behaves_like "not authorized action"
-  #   end
-  #   context 'when project not found' do
-  #     before do
-  #       setup_ability
-  #       @ability.can :read, Project
-  #       get :show, id: "undefined", format: :json
-  #     end
-  #     it 'should have 404 http status' do
-  #       expect(response).to have_http_status(404)
-  #     end
-  #     it 'should return error message' do
-  #       expect(JSON.parse(response.body)).to eq("errors" => ["Couldn't find Project with 'uuid'=undefined"])
-  #     end
-  #   end
-  # end
-  # describe 'POST #create' do
-  #   context 'when user can create project' do
-  #     before do
-  #       setup_ability
-  #       @user = FactoryGirl.create(:user)
-  #       allow(controller).to receive(:current_user) { @user }
-  #       @ability.can :create, Project
-  #     end
-  #     context "with valid project" do
-  #       before do
-  #         @project = FactoryGirl.build(:project)
-  #         post :create, project: @project.attributes, format: :json
-  #       end
-  #       it 'should create new project' do
-  #         expect(Project.last.uuid).to eq(@project.uuid)
-  #       end
-  #       it 'should have 201 http status' do
-  #         expect(response).to have_http_status(201)
-  #       end
-  #       it 'should have location header' do
-  #         expect(response.headers).to include("Location")
-  #       end
-  #       it 'should return created project' do
-  #         expect(response).to render_template(:show)
-  #       end
-  #     end
-  #     context "with invalid project" do
-  #       before do
-  #         @project = Project.new
-  #         # REVIEW: this expectation should be refactored, or no?
-  #         expect(Project.count).to eq(0)
-  #         post :create, project: @project.attributes, format: :json
-  #       end
-  #       it 'should not create new project' do
-  #         expect(Project.count).to eq(0)
-  #       end
-  #       it 'should have 403 http status' do
-  #         expect(response).to have_http_status(403)
-  #       end
-  #       it 'should return errors list' do
-  #         @project.validate
-  #         expect(JSON.parse(response.body)["errors"]).to eq(@project.errors.full_messages)
-  #       end
-  #     end
-  #     context "when project already created" do
-  #       before do
-  #         @project = FactoryGirl.create(:project)
-  #         expect(Project.count).to eq(1)
-  #         post :create, project: @project.attributes, format: :json
-  #       end
-  #       it 'should not create new project' do
-  #         expect(Project.count).to eq(1)
-  #       end
-  #       it 'should have 409 http status' do
-  #         expect(response).to have_http_status(409)
-  #       end
-  #       it 'should return errors list' do
-  #         expect(JSON.parse(response.body)["errors"]).to eq(["Uuid has already been taken"])
-  #       end
-  #     end
-  #   end
-  #   context 'when user cannot create project' do
-  #     before do
-  #       setup_ability
-  #       @user = FactoryGirl.create(:user)
-  #       allow(controller).to receive(:current_user) { @user }
-  #       @ability.cannot :create, Project
-  #       @project = FactoryGirl.build(:project)
-  #       post :create, project: @project.attributes, format: :json
-  #     end
-  #     it_behaves_like "not authorized action"
-  #   end
-  # end
-  # describe 'PATCH #update' do
-  #   context 'when user can update project' do
-  #     before do
-  #       setup_ability
-  #       @user = FactoryGirl.create(:user)
-  #       allow(controller).to receive(:current_user) { @user }
-  #       @project = FactoryGirl.create(:project, {user_id: @user})
-  #       @ability.can :update, Project
-  #     end
-  #     context "with valid project" do
-  #       before do
-  #         @project.title = "Ninja turtles"
-  #         patch :update, id: @project.uuid, project: @project.attributes, format: :json
-  #       end
-  #       it 'should update project' do
-  #         expect(Project.find(@project.uuid).title).to eq(@project.title)
-  #       end
-  #       it 'should have 200 http status' do
-  #         expect(response).to have_http_status(200)
-  #       end
-  #       it 'should return updated project' do
-  #         expect(response).to render_template(:show)
-  #       end
-  #     end
-  #     context "with invalid project" do
-  #       before do
-  #         @project.title = ""
-  #         patch :update, id: @project.uuid, project: @project.attributes, format: :json
-  #       end
-  #       it 'should not update project' do
-  #         expect(Project.find(@project.uuid).title).not_to eq(@project.title)
-  #       end
-  #       it 'should have 403 http status' do
-  #         expect(response).to have_http_status(403)
-  #       end
-  #       it 'should return errors list' do
-  #         @project.validate
-  #         expect(JSON.parse(response.body)["errors"]).to eq(@project.errors.full_messages)
-  #       end
-  #     end
-  #   end
-  #   context 'when user cannot update project' do
-  #     before do
-  #       setup_ability
-  #       @user = FactoryGirl.create(:user)
-  #       allow(controller).to receive(:current_user) { @user }
-  #       @project = FactoryGirl.create(:project, {user_id: @user})
-  #       @ability.cannot :update, Project
-  #       patch :update, id: @project.uuid, project: @project.attributes, format: :json
-  #     end
-  #     it_behaves_like "not authorized action"
-  #   end
-  # end
+  describe 'GET #show' do
+    context 'when user can read task' do
+      before do
+        setup_ability
+        @task = FactoryGirl.create(:task)
+        @ability.can :read, Task
+        get :show, id: @task, format: :json
+      end
+      it 'should have 200 http status' do
+        expect(response).to have_http_status(200)
+      end
+      it 'should assign task' do
+        expect(assigns(:task).uuid).to eq(@task.uuid)
+      end
+      it 'should return task' do
+        expect(response).to render_template(:show)
+      end
+    end
+    context 'when user cannot read task' do
+      before do
+        setup_ability
+        @task = FactoryGirl.create(:task)
+        @ability.cannot :read, Task
+        get :show, id: @task, format: :json
+      end
+      it_behaves_like "not authorized action"
+    end
+    context 'when task not found' do
+      before do
+        setup_ability
+        @ability.can :read, Task
+        get :show, id: "undefined", format: :json
+      end
+      it 'should have 404 http status' do
+        expect(response).to have_http_status(404)
+      end
+      it 'should return error message' do
+        expect(JSON.parse(response.body)).to eq("errors" => ["Couldn't find Task with 'uuid'=undefined"])
+      end
+    end
+  end
+  describe 'POST #create' do
+    context 'when user can create task' do
+      before do
+        setup_ability
+        @ability.can :create, Task
+      end
+      context "with valid task" do
+        before do
+          @task = FactoryGirl.build(:task)
+          post :create, :project_id => @task.project, :task => @task.attributes, :format => :json
+        end
+        it 'should create new task' do
+          expect(Task.last.uuid).to eq(@task.uuid)
+        end
+        it 'should have 201 http status' do
+          expect(response).to have_http_status(201)
+        end
+        it 'should have location header' do
+          expect(response.headers).to include("Location")
+        end
+        it 'should return created task' do
+          expect(response).to render_template(:show)
+        end
+      end
+      context "with invalid task" do
+        before do
+          @project = FactoryGirl.create(:project)
+          @task = Task.new
+          # REVIEW: this expectation should be refactored, or no?
+          expect(Task.count).to eq(0)
+          post :create, :project_id => @project, :task => @task.attributes, :format => :json
+        end
+        it 'should not create new task' do
+          expect(Task.count).to eq(0)
+        end
+        it 'should have 403 http status' do
+          expect(response).to have_http_status(403)
+        end
+        it 'should return errors list' do
+          @task.validate
+          expect(JSON.parse(response.body)["errors"]).to eq(@task.errors.full_messages)
+        end
+      end
+      context "when task already created" do
+        before do
+          @task = FactoryGirl.create(:task)
+          expect(Task.count).to eq(1)
+          post :create, :project_id => @task.project, :task => @task.attributes, :format => :json
+        end
+        it 'should not create new task' do
+          expect(Task.count).to eq(1)
+        end
+        it 'should have 409 http status' do
+          expect(response).to have_http_status(409)
+        end
+        it 'should return errors list' do
+          expect(JSON.parse(response.body)["errors"]).to eq(["Uuid has already been taken"])
+        end
+      end
+    end
+    context 'when user cannot create task' do
+      before do
+        setup_ability
+        @ability.cannot :create, Task
+        @task = FactoryGirl.build(:task)
+        post :create, :project_id => @task.project, :task => @task.attributes, :format => :json
+      end
+      it_behaves_like "not authorized action"
+    end
+  end
+  describe 'PATCH #update' do
+    context 'when user can update task' do
+      before do
+        setup_ability
+        @task = FactoryGirl.create(:task)
+        @ability.can :update, Task
+      end
+      context "with valid task" do
+        before do
+          @task.title = "Ninja turtles"
+          patch :update, id: @task.uuid, task: @task.attributes, format: :json
+        end
+        it 'should update task' do
+          expect(Task.find(@task.uuid).title).to eq(@task.title)
+        end
+        it 'should have 200 http status' do
+          expect(response).to have_http_status(200)
+        end
+        it 'should return updated task' do
+          expect(response).to render_template(:show)
+        end
+      end
+      context "with invalid task" do
+        before do
+          @task.title = ""
+          patch :update, id: @task.uuid, task: @task.attributes, format: :json
+        end
+        it 'should not update task' do
+          expect(Task.find(@task.uuid).title).not_to eq(@task.title)
+        end
+        it 'should have 403 http status' do
+          expect(response).to have_http_status(403)
+        end
+        it 'should return errors list' do
+          @task.validate
+          expect(JSON.parse(response.body)["errors"]).to eq(@task.errors.full_messages)
+        end
+      end
+    end
+    context 'when user cannot update task' do
+      before do
+        setup_ability
+        @task = FactoryGirl.create(:task)
+        @ability.cannot :update, Task
+        patch :update, id: @task.uuid, task: @task.attributes, format: :json
+      end
+      it_behaves_like "not authorized action"
+    end
+  end
   describe 'DELETE #destroy' do
     context 'when user can delete task' do
       before do

@@ -8,7 +8,7 @@ FactoryGirl.define do
 
     after :build do |task, evaluator|
       if task.project.blank?
-        task.project = build(:project)
+        task.project = create(:project)
       end
     end
 
