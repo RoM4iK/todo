@@ -5,4 +5,5 @@ RSpec.describe Project, type: :model do
   it { FactoryGirl.create(:project); should validate_uniqueness_of :uuid }
   it { should validate_presence_of :title }
   it { should belong_to :user }
+  it { should have_many :tasks }
 end

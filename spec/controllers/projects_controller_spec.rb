@@ -5,9 +5,6 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user can have projects' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
-        @project = FactoryGirl.create_list(:project, 10, {user_id: @user})
         @ability.can :read, Project
         get :index, format: :json
       end
@@ -70,8 +67,6 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user can create project' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
         @ability.can :create, Project
       end
       context "with valid project" do
@@ -130,8 +125,6 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user cannot create project' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
         @ability.cannot :create, Project
         @project = FactoryGirl.build(:project)
         post :create, project: @project.attributes, format: :json
@@ -143,9 +136,7 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user can update project' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
-        @project = FactoryGirl.create(:project, {user_id: @user})
+        @project = FactoryGirl.create(:project)
         @ability.can :update, Project
       end
       context "with valid project" do
@@ -183,9 +174,7 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user cannot update project' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
-        @project = FactoryGirl.create(:project, {user_id: @user})
+        @project = FactoryGirl.create(:project)
         @ability.cannot :update, Project
         patch :update, id: @project.uuid, project: @project.attributes, format: :json
       end
@@ -196,9 +185,7 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user can delete project' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
-        @project = FactoryGirl.create(:project, {user_id: @user})
+        @project = FactoryGirl.create(:project)
         expect(Project.count).to eq(1)
         @ability.can :destroy, Project
         delete :destroy, id: @project.uuid, format: :json
@@ -213,9 +200,7 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user cannot delete project' do
       before do
         setup_ability
-        @user = FactoryGirl.create(:user)
-        allow(controller).to receive(:current_user) { @user }
-        @project = FactoryGirl.create(:project, {user_id: @user})
+        @project = FactoryGirl.create(:project)
         @ability.cannot :destroy, Project
         delete :destroy, id: @project.uuid, format: :json
       end

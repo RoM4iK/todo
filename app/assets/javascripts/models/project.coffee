@@ -1,6 +1,6 @@
 projectsFactory = ($resource) ->
   $resource '/projects/:id', {
-        id: @id,
+        id: '@id',
       },
       {
         'update':

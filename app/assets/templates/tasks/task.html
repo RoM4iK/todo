@@ -1,0 +1,21 @@
+<div class="collapsible-header tasks__task__header">
+  <div ng-if="editState != task.uuid">
+    {{task.title}}
+  </div>
+  <form ng-if="editState == task.uuid" name="form" class="tasks__edit__form" novalidate>
+        <input id="title" type="text" name="title" ng-model="task.title" class="validate" ng-required="true" />
+  </form>
+  <a ng-if="editState != task.uuid" ng-click="toggleEditState(task.uuid)"  class="btn-floating btn-small light-blue tasks__edit_button">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <a ng-if="editState != task.uuid" ng-click="delete(task.uuid)" class="btn-floating btn-small light-blue tasks__delete_button">
+    <i class="large material-icons">delete</i>
+  </a>
+  <a ng-if="editState == task.uuid" ng-click="toggleEditState()" class="btn-floating btn-small light-blue tasks__edit_button">
+    <i class="large material-icons">arrow_back</i>
+  </a>
+  <a ng-if="editState == task.uuid" ng-click="update(task)"  class="btn-floating btn-small light-blue tasks__delete_button">
+    <i class="large material-icons">save</i>
+  </a>
+</div>
+<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>

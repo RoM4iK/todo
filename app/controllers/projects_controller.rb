@@ -29,18 +29,9 @@ class ProjectsController < ApplicationController
 
   def destroy
     if @project.destroy
-      render json: "", status: 200
+      render json: ""
     else
       render json: {errors: @project.errors.full_messages}, status: 403
-    end
-  end
-
-  rescue_from ActiveRecord::RecordNotFound do |exception|
-    respond_to do |format|
-      format.json do
-        render json: { errors: [exception.message] }, status: 404
-      end
-      format.html { redirect_to root_url, :alert => exception.message }
     end
   end
 

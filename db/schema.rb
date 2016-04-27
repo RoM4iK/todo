@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415000725) do
+ActiveRecord::Schema.define(version: 20160424234817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20160415000725) do
   end
 
   add_index "projects", ["uuid"], name: "index_projects_on_uuid", unique: true, using: :btree
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "uuid",         null: false
+    t.string   "title"
+    t.boolean  "completed"
+    t.datetime "deadline_at"
+    t.integer  "position"
+    t.string   "project_uuid"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "tasks", ["project_uuid"], name: "index_tasks_on_project_uuid", using: :btree
+  add_index "tasks", ["uuid"], name: "index_tasks_on_uuid", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false

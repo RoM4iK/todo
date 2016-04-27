@@ -19,6 +19,17 @@ input:-webkit-autofill {
   @extend .white-text;
   font-weight: 600;
 }
+
+.btn-small {
+  @extend .btn;
+  height: 25px;
+  width: 25px;
+  i {
+    width: 100%;
+    line-height: 25px;
+    font-size: 13px;
+  }
+}
 .auth-page {
   padding: 20px 0 0;
 }

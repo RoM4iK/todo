@@ -8,9 +8,11 @@ RSpec.describe Ability, type: :model do
     let(:ability) { Ability.new(user) }
     describe 'can' do
       it { expect(ability).to be_able_to(:manage, Project.new(user: user)) }
+      it { expect(ability).to be_able_to(:manage, Task.new(project: FactoryGirl.create(:project, user: user))) }
     end
     describe 'can not' do
       it { expect(ability).not_to be_able_to(:manage, Project.new(user: other_user)) }
+      it { expect(ability).not_to be_able_to(:manage, Task.new(project: FactoryGirl.create(:project, user: other_user))) }
     end
   end
 end

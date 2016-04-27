@@ -24,6 +24,7 @@ projectsController = ($scope, Notification, Project, rfc4122, $state, $statePara
          $state.go('projects.show', {id: project.uuid})
       )
   $scope.show = () ->
+    $state.go('404') if !$stateParams.id
     $scope.project = Project.get
       id: $stateParams.id
 angular.module('App').controller('projectsController', ['$scope', 'Notification', 'Project', 'rfc4122', '$state', '$stateParams', projectsController])
