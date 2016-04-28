@@ -1,4 +1,4 @@
-tasksController = ($scope, Notification, Task, rfc4122, $state) ->
+tasksController = ($scope, Notification, Task, rfc4122, $state, $timeout) ->
   $('.collapsible').collapsible();
 
   project = $scope.$parent.project
@@ -57,9 +57,17 @@ tasksController = ($scope, Notification, Task, rfc4122, $state) ->
       item = event.source.itemScope.modelValue
       index = event.dest.index
       Task.move({id: item.uuid}, position: index, (response) ->
-        console.log(response)
       )
 
+  completedStatusTimeout = null;
+  $scope.updateCompletedStatus = (task) ->
+    $timeout.cancel(completedStatusTimeout);
+    completedStatusTimeout = $timeout(() ->
+      console.log('Time out')
+      Task.update({id: task.uuid}, task, (response) ->
+           task = response.data
+      )
+    , 300)
   initTask()
 
-angular.module('App').controller('tasksController', ['$scope', 'Notification', 'Task', 'rfc4122', '$state', tasksController])
+angular.module('App').controller('tasksController', ['$scope', 'Notification', 'Task', 'rfc4122', '$state', '$timeout', tasksController])

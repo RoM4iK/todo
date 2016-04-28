@@ -1,6 +1,7 @@
-<div class="collapsible-header tasks__task__header" as-sortable-item-handle>
+<div class="collapsible-header tasks__task__header" ng-class="{completed: task.completed}" as-sortable-item-handle>
   <div ng-if="editState != task.uuid">
-    {{task.title}}
+    <input type="checkbox" class="filled-in tasks__task__checkbox" id="complete_{{task.uuid}}" ng-change="updateCompletedStatus(task)" ng-model="task.completed" />
+    <label for="complete_{{task.uuid}}" class="black-text">{{task.title}}</label>
   </div>
   <form ng-if="editState == task.uuid" name="form" class="tasks__edit__form" novalidate>
         <input id="title" type="text" name="title" ng-model="task.title" class="validate" ng-required="true" />

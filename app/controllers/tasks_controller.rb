@@ -49,6 +49,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require('task').permit('title', 'uuid', 'deadline_at')
+    params.require('task').permit('title', 'uuid', 'deadline_at', 'completed')
   end
 end

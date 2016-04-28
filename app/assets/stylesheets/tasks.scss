@@ -15,6 +15,16 @@
       border: 2px solid color("light-blue", "base");
       padding: 10px;
     }
+    &__checkbox:checked+label:after {
+      border-color: color("light-blue", "base") !important;
+      background-color: color("light-blue", "base") !important;
+    }
+    &__header {
+      &.completed {
+        @extend .grey;
+        @extend .lighten-3;
+      }
+    }
   }
   &__edit_button, &__delete_button, &__save_button {
     position: absolute;
