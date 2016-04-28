@@ -9,8 +9,8 @@
       <div class="col s12">
         <div class="col s12 m6 offset-m3">
           <div class="projects__project">
-            <ul class="collapsible tasks" data-collapsible="accordion" ng-controller="tasksController">
-              <li class="tasks__task" ng-repeat="task in project.tasks" ng-include="'tasks/task.html'"></li>
+            <ul class="collapsible tasks" data-collapsible="accordion" ng-controller="tasksController" ng-model="project.tasks" as-sortable="dragControlListeners">
+              <li class="tasks__task" ng-repeat="task in project.tasks" ng-include="'tasks/task.html'" as-sortable-item></li>
               <li class="tasks_create_panel" ng-include="'tasks/create.html'"></li>
             </ul>
           </div>

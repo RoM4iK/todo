@@ -36,9 +36,19 @@ class TasksController < ApplicationController
     end
   end
 
+  def move
+    @task = Task.find(params[:task_id])
+    authorize! :move, @task
+    if @task.insert_at params.require('position')
+      render json: ""
+    else
+      render json: {errors: @task.errors.full_messages}, status: 403
+    end
+  end
+
   private
 
   def task_params
-    params.require('task').permit('title', 'uuid', 'project_id')
+    params.require('task').permit('title', 'uuid')
   end
 end

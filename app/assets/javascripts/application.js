@@ -20,5 +20,6 @@
 //= require materialize/dist/js/materialize
 //= require angular-rails-templates
 //= require angular-uuid-service/angular-uuid-service
+//= require ng-sortable/dist/ng-sortable
 //= require_tree ../templates
 //= require_tree .

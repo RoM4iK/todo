@@ -44,6 +44,14 @@ tasksController = ($scope, Notification, Task, rfc4122, $state) ->
          $scope.toggleEditState()
       )
 
+  $scope.dragControlListeners =
+    orderChanged: (event) ->
+      item = event.source.itemScope.modelValue
+      index = event.dest.index
+      Task.move({id: item.uuid}, position: index, (response) ->
+        console.log(response)
+      )
+
   initTask()
 
 angular.module('App').controller('tasksController', ['$scope', 'Notification', 'Task', 'rfc4122', '$state', tasksController])

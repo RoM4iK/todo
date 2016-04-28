@@ -14,6 +14,7 @@ gem 'devise_token_auth'
 gem 'omniauth-facebook'
 gem 'cancancan'
 gem 'angular_rails_csrf'
+gem 'acts_as_list', github: "RoM4iK/acts_as_list"
 
 
 group :development, :test do

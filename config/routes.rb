@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   shallow do
     resources :projects, except: [:new, :edit], defaults: { format: :json } do
-      resources :tasks, except: [:new, :edit], defaults: { format: :json }
+      resources :tasks, except: [:new, :edit], defaults: { format: :json } do
+        post 'move' => 'tasks#move'
+      end
     end
   end
 end

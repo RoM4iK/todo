@@ -5,7 +5,8 @@ angular.module('App', [
     "ui-notification",
     "ipCookie",
     "ngResource",
-    "uuid"
+    "uuid",
+    "as.sortable",
   ])
   .config(($authProvider, NotificationProvider, $httpProvider) ->
     $authProvider.configure(
