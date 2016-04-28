@@ -36,11 +36,8 @@ feature 'Create project', type: :feature, js: true do
       scenario 'Should not display success notification' do
         expect(page).not_to have_content("Project created")
       end
-      scenario 'Should display error notification' do
-        expect(page).not_to have_selector(".ui-notification.error")
-      end
       scenario 'Should redirect to new project' do
-        expect(page).to_not have_selector('.projects__project')
+        expect(page).not_to have_selector('.projects__project')
       end
     end
   end

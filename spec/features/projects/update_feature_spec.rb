@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Create project', type: :feature, js: true do
+feature 'Update project', type: :feature, js: true do
   before do
     @user = FactoryGirl.create(:user)
     sign_in @user
@@ -13,7 +13,7 @@ feature 'Create project', type: :feature, js: true do
   skip feature 'User can update project' do
     context 'With correct data' do
       before do
-        @project = FactoryGirl.create(:project, user_id: @user.id)
+        @project = FactoryGirl.create(:project, user: @user)
         visit "/#/projects/#{@project.uuid}/edit"
         expect(page).to have_selector('.projects__edit__form')
         within '.projects__edit__form' do
@@ -30,7 +30,7 @@ feature 'Create project', type: :feature, js: true do
     end
     context 'With incorrect data' do
       before do
-        @project = FactoryGirl.create(:project, user_id: @user.id)
+        @project = FactoryGirl.create(:project, user: @user)
         visit "/#/projects/#{@project.uuid}/edit"
         expect(page).to have_selector('.projects__edit__form')
         within '.projects__edit__form' do
@@ -39,10 +39,10 @@ feature 'Create project', type: :feature, js: true do
         end
       end
       scenario 'Should not display success notification' do
-        expect(page).not_to have_content("Project created")
+        expect(page).not_to have_content("Project updated")
       end
       scenario 'Should redirect to new project' do
-        expect(page).to_not have_selector('.projects__project')
+        expect(page).not_to have_selector('.projects__project')
       end
     end
   end

@@ -4,7 +4,7 @@
       position: relative;
     }
   }
-  &__edit_button, &__delete_button {
+  &__edit_button, &__delete_button, &__save_button {
     position: absolute;
     top: 10px;
   }
@@ -12,6 +12,9 @@
     right: 40px;
   }
   &__delete_button {
+    right: 5px;
+  }
+  &__save_button {
     right: 5px;
   }
 }
