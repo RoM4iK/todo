@@ -5,17 +5,30 @@
   <form ng-if="editState == task.uuid" name="form" class="tasks__edit__form" novalidate>
         <input id="title" type="text" name="title" ng-model="task.title" class="validate" ng-required="true" />
   </form>
-  <a ng-if="editState != task.uuid" ng-click="toggleEditState(task.uuid)"  class="btn-floating btn-small light-blue tasks__edit_button">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <a ng-if="editState != task.uuid" ng-click="delete(task.uuid)" class="btn-floating btn-small light-blue tasks__delete_button">
-    <i class="large material-icons">delete</i>
-  </a>
-  <a ng-if="editState == task.uuid" ng-click="toggleEditState()" class="btn-floating btn-small light-blue tasks__edit_button">
-    <i class="large material-icons">arrow_back</i>
-  </a>
-  <a ng-if="editState == task.uuid" ng-click="update(task)"  class="btn-floating btn-small light-blue tasks__save_button">
-    <i class="large material-icons">save</i>
-  </a>
 </div>
+<a class="tasks__task__deadline chip light-blue lighten-2 white-text clickable" ng-click="toggleDatePickerState(task.uuid)">
+  {{task.__deadline_at || task.deadline_at || "Choose deadline"}}
+</a>
+<div
+  id="{{'datepicker_' + task.uuid}}"
+  ng-if="datePickerState == task.uuid"
+  click-outside="closeDatePicker(task)"
+  class="tasks__task__datepicker"
+  pickadate
+  ng-model="task.__deadline_at"
+  default-date="task.deadline_at"
+  format="yyyy-mm-dd"
+></div>
+<a ng-if="editState != task.uuid" ng-click="toggleEditState(task.uuid)"  class="btn-floating btn-small light-blue tasks__edit_button">
+  <i class="large material-icons">mode_edit</i>
+</a>
+<a ng-if="editState != task.uuid" ng-click="delete(task.uuid)" class="btn-floating btn-small light-blue tasks__delete_button">
+  <i class="large material-icons">delete</i>
+</a>
+<a ng-if="editState == task.uuid" ng-click="toggleEditState()" class="btn-floating btn-small light-blue tasks__edit_button">
+  <i class="large material-icons">arrow_back</i>
+</a>
+<a ng-if="editState == task.uuid" ng-click="update(task)"  class="btn-floating btn-small light-blue tasks__save_button">
+  <i class="large material-icons">save</i>
+</a>
 <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>

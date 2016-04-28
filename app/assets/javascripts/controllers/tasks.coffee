@@ -2,7 +2,6 @@ tasksController = ($scope, Notification, Task, rfc4122, $state) ->
   $('.collapsible').collapsible();
 
   project = $scope.$parent.project
-  $scope.editState = false
   initTask = () ->
     $scope.task =
       uuid: rfc4122.v4(),
@@ -31,6 +30,15 @@ tasksController = ($scope, Notification, Task, rfc4122, $state) ->
     if currentTask
       $scope.newTitle = currentTask.title
     $scope.editState = uuid
+  $scope.toggleDatePickerState = (uuid) ->
+    $scope.datePickerState = uuid
+  $scope.closeDatePicker = (task) ->
+    $scope.toggleDatePickerState()
+    if task.__deadline_at
+      task.deadline_at = task.__deadline_at
+      Task.update({id: task.uuid}, task, (response) ->
+           task = response.data
+        )
   $scope.delete = (id) ->
     if confirm("Are you sure to delete this project?")
       Task.delete({id: id}, () ->

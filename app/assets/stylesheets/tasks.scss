@@ -1,12 +1,27 @@
 .tasks {
   &__task {
-    &__header {
-      position: relative;
+    position: relative;
+    &__deadline {
+      position: absolute;
+      top: 7px;
+      right: 90px;
+    }
+    &__datepicker {
+      position: absolute;
+      background: #fff;
+      top: 50px;
+      right: 90px;
+      z-index: 5;
+      border: 2px solid color("light-blue", "base");
+      padding: 10px;
     }
   }
   &__edit_button, &__delete_button, &__save_button {
     position: absolute;
     top: 10px;
+    i {
+      vertical-align: top;
+    }
   }
   &__edit_button {
     right: 40px;

@@ -7,6 +7,8 @@ angular.module('App', [
     "ngResource",
     "uuid",
     "as.sortable",
+    "pickadate",
+    "angular-click-outside"
   ])
   .config(($authProvider, NotificationProvider, $httpProvider) ->
     $authProvider.configure(

@@ -21,5 +21,7 @@
 //= require angular-rails-templates
 //= require angular-uuid-service/angular-uuid-service
 //= require ng-sortable/dist/ng-sortable
+//= require angular-pickadate/dist/angular-pickadate
+//= require angular-click-outside/clickoutside.directive
 //= require_tree ../templates
 //= require_tree .
