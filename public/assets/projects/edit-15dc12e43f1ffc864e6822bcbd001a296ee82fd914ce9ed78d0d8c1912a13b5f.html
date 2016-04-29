@@ -1,0 +1,30 @@
+<div class="projects edit" ng-init="show()">
+  <div class="container relative">
+    <div class="row center">
+        <h2>{{ project.title }}</h2>
+        <projects-actions id="project.uuid" edit-page="true" delete="delete()"/>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="col s12 m6 offset-m3">
+          <form name="form" ng-submit="form.$valid && update(form)" class="projects__edit__form" novalidate>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="title" type="text" name="title" ng-model="project.title" class="validate" ng-required="true">
+                <label for="title" class="active">Title</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" ng-class="['primary-button', {disabled: form.$invalid}]">
+                  Update
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

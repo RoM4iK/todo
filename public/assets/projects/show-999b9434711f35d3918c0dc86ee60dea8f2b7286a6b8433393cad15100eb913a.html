@@ -1,0 +1,21 @@
+<div class="projects show" ng-init="show()">
+  <div class="container relative">
+    <div class="row center">
+        <h2>{{ project.title }}</h2>
+        <projects-actions id="project.uuid" delete="delete()"/>
+       </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="col s12 m6 offset-m3">
+          <div class="projects__project">
+            <ul class="collapsible tasks" data-collapsible="accordion" ng-controller="tasksController" ng-model="project.tasks" as-sortable="dragControlListeners">
+              <li class="tasks__task" ng-repeat="task in project.tasks" ng-include="'tasks/task.html'" as-sortable-item></li>
+              <li class="tasks_create_panel" ng-include="'tasks/create.html'"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
