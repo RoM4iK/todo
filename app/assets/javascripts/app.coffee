@@ -13,6 +13,9 @@ angular.module('App', [
   .config(($authProvider, NotificationProvider, $httpProvider) ->
     $authProvider.configure(
         apiUrl: ''
+        authProviderPaths: {
+          facebook: '/auth/facebook'
+        },
     )
     NotificationProvider.setOptions({
             positionX: 'left'
