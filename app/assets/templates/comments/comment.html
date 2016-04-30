@@ -1,10 +1,13 @@
+<a ng-click="delete(comment.uuid)" class="btn-floating btn-small light-blue comments__delete_button">
+  <i class="large material-icons">delete</i>
+</a>
 <div class="row">
   <div class="col s12">
-    <p class="comments__comment__text">
+     <div class="comments__comment__text">
        {{comment.text}}
-     </p>
-     <p class="comments__comment__author">
-       <small>{{comment.user.email}}</small>
-     </p>
+     </div>
+     <div class="comments__comment__author">
+       {{comment.user.email}}
+     </div>
   </div>
 </div>
