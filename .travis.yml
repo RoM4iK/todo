@@ -1,11 +1,15 @@
 language: ruby
 rvm:
 - 2.2.1
+before_install:
+  - mkdir travis-phantomjs
+  - wget http://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2
+  - tar -xvf $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis-phantomjs
+  - export PATH=$PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH
 env:
 - DB=postgresql
 script:
 - RAILS_ENV=test bundle exec rake db:migrate
-- rake bower:install
 - bundle exec rspec
 before_script:
 - psql -c 'create database todo_test' -U postgres
