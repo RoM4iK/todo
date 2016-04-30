@@ -22,7 +22,14 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
   config.around(:each) do |example|
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    if example.metadata[:js]
+      Capybara.register_driver :poltergeist do |app|
+        Capybara::Poltergeist::Driver.new(app, timeout: 1000, js_errors: false)
+      end
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+    end
     DatabaseCleaner.cleaning do
         example.run
     end
