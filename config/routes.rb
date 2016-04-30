@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :projects, except: [:new, :edit], defaults: { format: :json } do
       resources :tasks, except: [:new, :edit], defaults: { format: :json } do
         post 'move' => 'tasks#move'
+        resources :comments, except: [:new, :edit], defaults: { format: :json }
       end
     end
   end

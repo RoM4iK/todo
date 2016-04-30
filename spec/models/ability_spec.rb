@@ -7,12 +7,24 @@ RSpec.describe Ability, type: :model do
     let(:other_user) { FactoryGirl.create(:user, email: "other@gmail.com") }
     let(:ability) { Ability.new(user) }
     describe 'can' do
-      it { expect(ability).to be_able_to(:manage, Project.new(user: user)) }
-      it { expect(ability).to be_able_to(:manage, Task.new(project: FactoryGirl.create(:project, user: user))) }
+      before do
+        @project = Project.new(user: user)
+        @task = Task.new(project: @project)
+        @comment =  Comment.new(task: @task)
+      end
+      it { expect(ability).to be_able_to(:manage, @project) }
+      it { expect(ability).to be_able_to(:manage, @task) }
+      it { expect(ability).to be_able_to(:manage, @comment) }
     end
     describe 'can not' do
-      it { expect(ability).not_to be_able_to(:manage, Project.new(user: other_user)) }
-      it { expect(ability).not_to be_able_to(:manage, Task.new(project: FactoryGirl.create(:project, user: other_user))) }
+      before do
+        @project = Project.new(user: other_user)
+        @task = Task.new(project: @project)
+        @comment =  Comment.new(task: @task)
+      end
+      it { expect(ability).not_to be_able_to(:manage, @project) }
+      it { expect(ability).not_to be_able_to(:manage, @task) }
+      it { expect(ability).not_to be_able_to(:manage, @comment) }
     end
   end
 end
