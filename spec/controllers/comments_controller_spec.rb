@@ -47,6 +47,8 @@ RSpec.describe CommentsController, type: :controller do
       before do
         setup_ability
         @ability.can :create, Comment
+        @user = FactoryGirl.create(:user)
+        allow(controller).to receive(:current_user) { @user }
       end
       context "with valid comment" do
         before do
@@ -55,6 +57,9 @@ RSpec.describe CommentsController, type: :controller do
         end
         it 'should create new comment' do
           expect(Comment.last.uuid).to eq(@comment.uuid)
+        end
+        it 'should assign comment user' do
+          expect(Comment.find(@comment.uuid).user).to eq(@user)
         end
         it 'should have 201 http status' do
           expect(response).to have_http_status(201)

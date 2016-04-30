@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @comment.user = current_user
     if @comment.save
       render :show, status: 201, location: comment_path(@comment)
     else

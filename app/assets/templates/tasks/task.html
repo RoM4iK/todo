@@ -33,6 +33,7 @@
   <i class="large material-icons">save</i>
 </a>
 <div class="collapsible-body comments" ng-controller="commentsController">
-  <li class="comments__comment" ng-repeat="comment in task.comments" ng-include="'comments/comment.html'"></li>
+  <h4 ng-if"task.comments" class="center">Comments</h4>
+  <li class="comments__comment grey lighten-4" ng-repeat="comment in task.comments" ng-include="'comments/comment.html'"></li>
   <li ng-include="'comments/create.html'"></li>
 </div>
