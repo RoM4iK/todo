@@ -7,7 +7,6 @@ script:
 - RAILS_ENV=test bundle exec rake db:migrate
 - bundle exec rspec
 before_script:
-- psql -c 'create database amazon_test' -U postgres
-- cp config/secrets.yml.travis config/secrets.yml
+- psql -c 'create database todo_test' -U postgres
 addons:
   postgresql: 9.3
