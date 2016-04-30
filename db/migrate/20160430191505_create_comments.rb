@@ -8,6 +8,6 @@ class CreateComments < ActiveRecord::Migration
       t.string :task_uuid, index: true
       t.timestamps null: false
     end
-    add_index :projects, :uuid, unique: true
+    add_index :comments, :uuid, unique: true
   end
 end
