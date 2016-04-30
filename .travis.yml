@@ -5,9 +5,9 @@ env:
 - DB=postgresql
 script:
 - RAILS_ENV=test bundle exec rake db:migrate
+- rake bower:install
 - bundle exec rspec
 before_script:
 - psql -c 'create database todo_test' -U postgres
-- rake bower:install
 addons:
   postgresql: 9.3
