@@ -15,6 +15,7 @@ gem 'omniauth-facebook'
 gem 'cancancan'
 gem 'angular_rails_csrf'
 gem 'acts_as_list', github: "RoM4iK/acts_as_list"
+gem "paperclip", "~> 5.0.0.beta1"
 
 
 group :development, :test do

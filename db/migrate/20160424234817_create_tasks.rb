@@ -7,7 +7,6 @@ class CreateTasks < ActiveRecord::Migration
       t.datetime :deadline_at
       t.integer :position
       t.string :project_uuid, index: true
-
       t.timestamps null: false
     end
     add_index :tasks, :uuid, unique: true
