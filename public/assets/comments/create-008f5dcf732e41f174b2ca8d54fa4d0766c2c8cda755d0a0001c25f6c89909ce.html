@@ -1,0 +1,16 @@
+<form name="form" ng-submit="form.$valid && create(form)" class="comments__create_form" novalidate>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="text" type="text" name="text" ng-model="comment.text" class="validate" ng-required="true">
+      <label for="text">Your comment</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <button type="submit" ng-class="['primary-button', {disabled: form.$invalid}]">
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+</form>

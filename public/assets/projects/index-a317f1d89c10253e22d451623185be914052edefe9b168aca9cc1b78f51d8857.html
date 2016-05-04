@@ -1,0 +1,22 @@
+<div class="projects" ng-init="index()">
+  <div class="container">
+    <div class="row center">
+        <h2 ng-if="projects.length > 0">Your projects</h2>
+        <h2 ng-if="projects.length == 0" class="center">You have no projects</h2>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="row" >
+          <div class="col s12 m8 offset-m2">
+            <div ng-if="projects.length > 0" class="collection hoverable">
+              <a ng-repeat="project in projects" ui-sref="projects.show({id: project.uuid})" class="collection-item">{{ project.title }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="row center">
+            <a ui-sref="projects.create" class="btn-large primary-button hoverable">Create project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
