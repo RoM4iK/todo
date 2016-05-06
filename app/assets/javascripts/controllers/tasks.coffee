@@ -37,8 +37,8 @@ tasksController = ($scope, Notification, Task, rfc4122, $state, $timeout) ->
     if task.__deadline_at
       task.deadline_at = task.__deadline_at
       Task.update({id: task.uuid}, task, (response) ->
-           task = response.data
-        )
+        task = response.data
+      )
   $scope.delete = (id) ->
     if confirm("Are you sure to delete this project?")
       Task.delete({id: id}, () ->

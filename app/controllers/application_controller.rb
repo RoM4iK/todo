@@ -5,21 +5,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.json do
-        render json: { errors: [exception.message] }, status: 403
-      end
-      format.html { redirect_to root_url, :alert => exception.message }
-    end
+    hande_exception(exception, 403)
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    respond_to do |format|
-      format.json do
-        render json: { errors: [exception.message] }, status: 404
-      end
-      format.html { redirect_to root_url, :alert => exception.message }
-    end
+    hande_exception(exception, 404)
   end
 
   protected
@@ -58,5 +48,16 @@ class ApplicationController < ActionController::Base
 
   def dynamic_resource_params(resource)
     send("#{resource.class.to_s.downcase}_params")
+  end
+
+  private
+
+  def hande_exception(exception, status)
+    respond_to do |format|
+      format.json do
+        render json: { errors: [exception.message] }, status: status
+      end
+      format.html { redirect_to root_url, :alert => exception.message }
+    end
   end
 end
