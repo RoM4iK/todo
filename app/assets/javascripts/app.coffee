@@ -8,7 +8,8 @@ angular.module('App', [
     "uuid",
     "as.sortable",
     "pickadate",
-    "angular-click-outside"
+    "angular-click-outside",
+    "naif.base64"
   ])
   .config(($authProvider, NotificationProvider, $httpProvider) ->
     $authProvider.configure(

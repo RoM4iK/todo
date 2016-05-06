@@ -23,5 +23,6 @@
 //= require ng-sortable/dist/ng-sortable
 //= require angular-pickadate/dist/angular-pickadate
 //= require angular-click-outside/clickoutside.directive
+//= require angular-base64-upload/dist/angular-base64-upload
 //= require_tree ../templates
 //= require_tree .

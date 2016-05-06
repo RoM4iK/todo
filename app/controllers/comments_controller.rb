@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment.user = current_user
+    @comment.image = decode_image
     if @comment.save
       render :show, status: 201, location: comment_path(@comment)
     else
@@ -49,7 +50,22 @@ class CommentsController < ApplicationController
 
   private
 
+
+  def decode_image
+    return if params[:image].blank?
+    decoded_data = Base64.decode64(params["image"]["base64"])
+    data = StringIO.new(decoded_data)
+    data.class_eval do
+      attr_accessor :content_type, :original_filename
+    end
+
+    data.content_type = params["image"]["filetype"]
+    data.original_filename = params["image"]["filename"]
+
+    # return data to be used as the attachment file (paperclip)
+    data
+  end
   def comment_params
-    params.require('comment').permit('uuid', 'text', 'image', 'user_id')
+    params.require('comment').permit('uuid', 'text', 'user_id')
   end
 end

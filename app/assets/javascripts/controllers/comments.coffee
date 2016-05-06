@@ -1,6 +1,7 @@
 commentsController = ($scope, Notification, Comment, rfc4122, $state, $timeout) ->
 
   task = $scope.$parent.task
+
   initComment = () ->
     $scope.comment =
       uuid: rfc4122.v4(),
