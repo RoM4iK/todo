@@ -38,18 +38,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  def move
-    @comment = Task.find(params[:comment_id])
-    authorize! :move, @comment
-    if @comment.insert_at params.require('position')
-      render json: ""
-    else
-      render json: {errors: @comment.errors.full_messages}, status: 403
-    end
-  end
-
   private
-
 
   def decode_image
     return if params[:image].blank?
@@ -58,11 +47,8 @@ class CommentsController < ApplicationController
     data.class_eval do
       attr_accessor :content_type, :original_filename
     end
-
     data.content_type = params["image"]["filetype"]
     data.original_filename = params["image"]["filename"]
-
-    # return data to be used as the attachment file (paperclip)
     data
   end
   def comment_params
