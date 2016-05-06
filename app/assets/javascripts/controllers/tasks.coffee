@@ -1,5 +1,5 @@
 tasksController = ($scope, Notification, Task, rfc4122, $state, $timeout) ->
-  $('.collapsible').collapsible();
+  $('.collapsible').collapsible()
 
   project = $scope.$parent.project
   initTask = () ->
@@ -7,7 +7,7 @@ tasksController = ($scope, Notification, Task, rfc4122, $state, $timeout) ->
       uuid: rfc4122.v4(),
       title: ''
   findTask = (uuid) ->
-     project.tasks.filter((task) ->
+    project.tasks.filter((task) ->
       task.uuid == uuid
     )[0]
   removeTask = (uuid) ->
@@ -47,27 +47,34 @@ tasksController = ($scope, Notification, Task, rfc4122, $state, $timeout) ->
       )
   $scope.update = (task) ->
     Task.update({id: task.uuid}, task, (response) ->
-         Notification 'Task updated'
-         task = response.data
-         $scope.toggleEditState()
-      )
+      Notification 'Task updated'
+      task = response.data
+      $scope.toggleEditState()
+    )
 
   $scope.dragControlListeners =
     orderChanged: (event) ->
       item = event.source.itemScope.modelValue
       index = event.dest.index
       Task.move({id: item.uuid}, position: index, (response) ->
-      )
+    )
 
-  completedStatusTimeout = null;
+  completedStatusTimeout = null
   $scope.updateCompletedStatus = (task) ->
-    $timeout.cancel(completedStatusTimeout);
+    $timeout.cancel(completedStatusTimeout)
     completedStatusTimeout = $timeout(() ->
-      console.log('Time out')
       Task.update({id: task.uuid}, task, (response) ->
-           task = response.data
+        task = response.data
       )
     , 300)
   initTask()
 
-angular.module('App').controller('tasksController', ['$scope', 'Notification', 'Task', 'rfc4122', '$state', '$timeout', tasksController])
+angular.module('App').controller('tasksController', [
+  '$scope',
+  'Notification',
+  'Task',
+  'rfc4122',
+  '$state',
+  '$timeout',
+  tasksController
+])

@@ -391,7 +391,7 @@ angular.module('ng-token-auth', ['ipCookie'])
                 ev.data = data
                 _this.cancelOmniauthInAppBrowserListeners()
                 $window.dispatchEvent(ev)
-                _this.initDfd();
+                _this.initDfd()
                 authWindow.close()
             )
 
@@ -506,11 +506,11 @@ angular.module('ng-token-auth', ['ipCookie'])
                   # strip token-related qs from url to prevent re-use of these params
                   # on page refresh
                   ['token', 'client_id', 'uid', 'expiry', 'config', 'reset_password', 'account_confirmation_success', 'oauth_registration'].forEach (prop) ->
-                    delete params[prop];
+                    delete params[prop]
 
                   # append any remaining params, if any
                   if Object.keys(params).length > 0
-                    url += '?' + @buildQueryString(params);
+                    url += '?' + @buildQueryString(params)
 
                   # redirect to target url
                   $location.url(url)
@@ -697,7 +697,7 @@ angular.module('ng-token-auth', ['ipCookie'])
           # abstract persistent data removal
           deleteData: (key) ->
             if @getConfig().storage instanceof Object
-              @getConfig().storage.deleteData(key);
+              @getConfig().storage.deleteData(key)
             switch @getConfig().storage
               when 'localStorage'
                 $window.localStorage.removeItem(key)

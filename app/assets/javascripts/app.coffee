@@ -13,18 +13,18 @@ angular.module('App', [
   ])
   .config(($authProvider, NotificationProvider, $httpProvider) ->
     $authProvider.configure(
-        apiUrl: ''
-        authProviderPaths: {
-          facebook: '/auth/facebook'
-        },
+      apiUrl: '',
+      authProviderPaths: {
+        facebook: '/auth/facebook'
+      }
     )
     NotificationProvider.setOptions({
-            positionX: 'left'
-    });
+      positionX: 'left'
+    })
     $httpProvider.interceptors.push(($q, $injector) ->
       # REVIEW: global error handlers, redirect on 404?
       responseError: (rejection) ->
-        Notification = $injector.get('Notification');
+        Notification = $injector.get('Notification')
         if rejection.status == 404
           $state = $injector.get('$state')
           $state.go('404')
