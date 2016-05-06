@@ -9,31 +9,15 @@ class TasksController < ApplicationController
   end
 
   def create
-    if @task.save
-      render :show, status: 201, location: task_path(@task)
-    else
-      if @task.errors[:uuid] == ["has already been taken"]
-        render json: {errors: @task.errors.full_messages}, status: 409
-      else
-        render json: {errors: @task.errors.full_messages}, status: 403
-      end
-    end
+    create_resource(@task)
   end
 
   def update
-    if @task.update task_params
-      render :show, status: 200, location: task_path(@task)
-    else
-      render json: {errors: @task.errors.full_messages}, status: 403
-    end
+    update_resource(@task)
   end
 
   def destroy
-    if @task.destroy
-      render json: ""
-    else
-      render json: {errors: @task.errors.full_messages}, status: 403
-    end
+    destroy_resource(@task)
   end
 
   def move

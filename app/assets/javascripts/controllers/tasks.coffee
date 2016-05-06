@@ -57,7 +57,8 @@ tasksController = ($scope, Notification, Task, rfc4122, $state, $timeout) ->
       item = event.source.itemScope.modelValue
       index = event.dest.index
       Task.move({id: item.uuid}, position: index, (response) ->
-    )
+        return
+      )
 
   completedStatusTimeout = null
   $scope.updateCompletedStatus = (task) ->

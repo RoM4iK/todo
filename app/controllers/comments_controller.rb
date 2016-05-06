@@ -11,31 +11,15 @@ class CommentsController < ApplicationController
   def create
     @comment.user = current_user
     @comment.image = decode_image
-    if @comment.save
-      render :show, status: 201, location: comment_path(@comment)
-    else
-      if @comment.errors[:uuid] == ["has already been taken"]
-        render json: {errors: @comment.errors.full_messages}, status: 409
-      else
-        render json: {errors: @comment.errors.full_messages}, status: 403
-      end
-    end
+    create_resource(@comment)
   end
 
   def update
-    if @comment.update comment_params
-      render :show, status: 200, location: comment_path(@comment)
-    else
-      render json: {errors: @comment.errors.full_messages}, status: 403
-    end
+    update_resource(@comment)
   end
 
   def destroy
-    if @comment.destroy
-      render json: ""
-    else
-      render json: {errors: @comment.errors.full_messages}, status: 403
-    end
+    destroy_resource(@comment)
   end
 
   private
